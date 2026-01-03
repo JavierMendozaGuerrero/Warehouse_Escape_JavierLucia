@@ -30,18 +30,15 @@ Escena jugable final:
 - `Assets/TextMesh Pro/` → dependencias de UI (TMP)
 
 ## Controles
-- WASD / flechas: mover
+-flechas: mover
 ---
 
-## Descripción del proyecto
-Warehouse Escape es un videojuego desarrollado en Unity en el que el jugador controla a un personaje (Thief) que debe escapar de un almacén vigilado. Para lograrlo, el jugador debe explorar el entorno, evitar a los GuardRobots, recoger un objeto objetivo y alcanzar la zona de salida antes de ser capturado.
-
-El proyecto implementa un bucle de juego completo que incluye menú principal, selección de dificultad, jugabilidad, condiciones de victoria y derrota, y reinicio de la partida. La arquitectura está diseñada siguiendo principios de modularidad y mantenibilidad, aplicando patrones de diseño vistos en la asignatura.
-
----
 
 ## Objetivo del juego
-El objetivo del jugador es recoger el objeto objetivo y escapar por la salida sin ser atrapado por los guardias. Al activar una alarma, el guardia pasa de patrullar a perseguir activamente al jugador, incrementando la dificultad del nivel.
+El jugador controla a un ladrón infiltrado en un almacén el cual debe encontrar un objeto y 
+escapar por la salida, en cada partida cambia la localización del objeto, la localización de 
+la salida y la localización de las alarmas. El juego incluye varios niveles de dificultad, 
+donde cambian la velocidad del robot y el número de alarmas. 
 
 
 ## Interfaz de usuario (UI)
@@ -54,9 +51,6 @@ El sistema de UI incluye:
 
 ---
 ## Arquitectura y UML
-La arquitectura del proyecto se basa en componentes desacoplados que se comunican mediante eventos.  
-El diagrama UML final refleja las relaciones entre los distintos sistemas del juego, incluyendo asociaciones, dependencias y composiciones justificadas en la documentación.
-
 El UML y la memoria completa del proyecto se encuentran en la carpeta `/doc`.
 
 ---
