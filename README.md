@@ -36,13 +36,13 @@ El proyecto incluye las siguientes funcionalidades principales:
 
 ---
 
-## Inteligencia Artificial de los Guardias
-Los GuardRobots utilizan una máquina de estados para gestionar su comportamiento:
+## Maquina de estados del guardia
+El GuardRobot utiliza una máquina de estados para gestionar su comportamiento:
 
 - **PatrolState**: el guardia recorre una serie de puntos de patrulla (waypoints).
 - **ChaseState**: el guardia persigue activamente al jugador tras activarse una alarma.
 
-Durante la persecución, los guardias incorporan un sistema de evasión de obstáculos y detección de atascos, evitando quedarse bloqueados contra paredes mediante comprobaciones de colisión y lógica de escape.
+Durante la persecución, el guardia incorporan un sistema de evasión de obstáculos y detección de atascos, evitando quedarse bloqueados contra paredes mediante comprobaciones de colisión y lógica de escape.
 
 ---
 
@@ -50,7 +50,7 @@ Durante la persecución, los guardias incorporan un sistema de evasión de obst�
 La dificultad del juego se gestiona mediante ScriptableObjects (`DifficultySettings`), lo que permite configurar parámetros como:
 
 - Número de alarmas en el nivel.
-- Velocidad de los guardias.
+- Velocidad del guardia.
 - Comportamiento general del nivel.
 
 Este enfoque permite modificar la dificultad directamente desde el editor de Unity sin necesidad de cambiar el código, separando claramente los datos de configuración de la lógica del juego.
