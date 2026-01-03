@@ -31,8 +31,6 @@ Escena jugable final:
 
 ## Controles
 - WASD / flechas: mover
-
-
 ---
 
 ## Descripción del proyecto
@@ -43,47 +41,8 @@ El proyecto implementa un bucle de juego completo que incluye menú principal, s
 ---
 
 ## Objetivo del juego
-El objetivo del jugador es recoger el objeto objetivo y escapar por la salida sin ser atrapado por los guardias. Al activar una alarma, los guardias pasan de patrullar a perseguir activamente al jugador, incrementando la dificultad del nivel.
+El objetivo del jugador es recoger el objeto objetivo y escapar por la salida sin ser atrapado por los guardias. Al activar una alarma, el guardia pasa de patrullar a perseguir activamente al jugador, incrementando la dificultad del nivel.
 
----
-
-## Funcionalidades implementadas
-El proyecto incluye las siguientes funcionalidades principales:
-
-- Movimiento completo del jugador (Thief).
-- Sistema de enemigos (GuardRobot) con inteligencia artificial basada en estados.
-- Estados de patrulla y persecución implementados mediante una máquina de estados.
-- Sistema de alarmas que, al ser activadas, alertan a los guardias y cambian su comportamiento.
-- Generación dinámica de alarmas según la dificultad seleccionada.
-- Objeto objetivo que debe recogerse antes de poder escapar.
-- Zona de salida que valida la condición de victoria.
-- Sistema de puntuación.
-- Menú principal con selección de dificultad.
-- Paneles de UI para victoria, derrota y alertas durante la partida.
-- Reinicio completo del nivel tras finalizar la partida.
-
----
-
-## Maquina de estados del guardia
-El GuardRobot utiliza una máquina de estados para gestionar su comportamiento:
-
-- **PatrolState**: el guardia recorre una serie de puntos de patrulla (waypoints).
-- **ChaseState**: el guardia persigue activamente al jugador tras activarse una alarma.
-
-Durante la persecución, el guardia incorporan un sistema de evasión de obstáculos y detección de atascos, evitando quedarse bloqueados contra paredes mediante comprobaciones de colisión y lógica de escape.
-
----
-
-## Sistema de dificultad
-La dificultad del juego se gestiona mediante ScriptableObjects (`DifficultySettings`), lo que permite configurar parámetros como:
-
-- Número de alarmas en el nivel.
-- Velocidad del guardia.
-- Comportamiento general del nivel.
-
-Este enfoque permite modificar la dificultad directamente desde el editor de Unity sin necesidad de cambiar el código, separando claramente los datos de configuración de la lógica del juego.
-
----
 
 ## Interfaz de usuario (UI)
 El sistema de UI incluye:
@@ -91,21 +50,16 @@ El sistema de UI incluye:
 - Menú principal con selección de dificultad.
 - Visualización de la puntuación durante la partida.
 - Panel de alerta que se muestra al activar una alarma.
-- Pantalla de victoria al escapar correctamente.
-- Pantalla de derrota cuando el jugador es capturado.
-
-Los paneles se gestionan de forma desacoplada mediante eventos lanzados por el GameManager.
+- Pantalla de victoria y de derrota
 
 ---
 
 ## Patrones de diseño utilizados
 Durante el desarrollo se han aplicado varios patrones de diseño:
 
-- **State Pattern**: utilizado para la IA de los GuardRobots (patrulla y persecución).
+- **State Pattern**: utilizado para los GuardRobots (patrulla y persecución).
 - **Factory Pattern**: empleado para la creación dinámica de alarmas en el nivel.
-- **Singleton / GameManager**: gestión centralizada del estado global del juego.
-- **ScriptableObject**: configuración de la dificultad del juego separada de la lógica.
-
+- **Singleton / ScoreManager**: gestión de la puntuación global del juego
 ---
 
 ## Arquitectura y UML
@@ -122,7 +76,6 @@ El UML y la memoria completa del proyecto se encuentran en la carpeta `/doc`.
 - TextMeshPro
 - Visual Studio / VS Code
 - Git y GitHub para control de versiones
-
 ---
 
 ## Contenido del repositorio
