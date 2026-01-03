@@ -25,8 +25,8 @@ Escena jugable final:
 - `Assets/_Project/LowPolyFPSLite/` → Assets del entorno + escena final
   - `Scenes/` → aquí está la escena final
 - `Assets/Scripts/` → scripts del juego (GameManager, GuardRobot, Alarm, etc.)
-- `Assets/Difficulty/` → ScriptableObjects de dificultad (Easy/Medium/Hard)
-- `Assets/Prefabs/` → prefabs del proyecto (si aplica)
+- `Assets/_Project/Difficulty/` → ScriptableObjects de dificultad (Easy/Medium/Hard)
+- `Assets/Prefabs/` → prefabs del proyecto 
 - `Assets/TextMesh Pro/` → dependencias de UI (TMP)
 
 ## Controles
