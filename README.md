@@ -5,6 +5,34 @@ Arquitectura del Software – ICAI (Universidad Pontificia Comillas)
 Javier Mendoza Guerrero  
 Lucía Tamarit Barberán  
 
+
+# Warehouse Escape (Unity)
+
+Autores: Javier Mendoza Guerrero y Lucía Tamarit Barberán  
+Unity: 6000.2.6f2 (Unity 6.2)
+
+## Cómo abrir y ejecutar
+1. Abrir el proyecto con Unity Hub.
+2. Abrir la escena final:
+   **Assets/_Project/LowPolyFPSLite/Scenes/LowPolyFPS_Lite_Demo_2.unity**
+3. Play y seleccionar dificultad (Easy/Medium/Hard) en el menú.
+
+## Ruta de la escena final
+Escena jugable final:
+- `Assets/_Project/LowPolyFPSLite/Scenes/LowPolyFPS_Lite_Demo_2.unity`
+
+## Estructura de carpetas (resumen)
+- `Assets/_Project/LowPolyFPSLite/` → Assets del entorno + escena final
+  - `Scenes/` → aquí está la escena final
+- `Assets/Scripts/` → scripts del juego (GameManager, GuardRobot, Alarm, etc.)
+- `Assets/Difficulty/` → ScriptableObjects de dificultad (Easy/Medium/Hard)
+- `Assets/Prefabs/` → prefabs del proyecto (si aplica)
+- `Assets/TextMesh Pro/` → dependencias de UI (TMP)
+
+## Controles
+- WASD / flechas: mover
+
+
 ---
 
 ## Descripción del proyecto
