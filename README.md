@@ -1,91 +1,113 @@
-# Warehouse Escape – Diseño de Arquitectura (Primera Parte)
-Proyecto Final – Arquitectura del Software – ICAI  
-Autores: Javier Mendoza Guerrero y Lucía Tamarit Barberán
+# Warehouse Escape – Proyecto Final Unity
+Arquitectura del Software – ICAI (Universidad Pontificia Comillas)
+
+**Autores**  
+Javier Mendoza Guerrero  
+Lucía Tamarit Barberán  
+
+---
 
 ## Descripción del proyecto
-Warehouse Escape es un videojuego desarrollado en Unity cuyo objetivo es que el jugador, controlando al personaje Thief, recorra un almacén, evite a los GuardRobots, recoja el ObjectiveItem y alcance la ExitZone para completar el nivel.  
-Esta primera entrega se centra en el diseño de arquitectura del proyecto, definiendo los componentes principales, patrones de diseño utilizados y la planificación técnica previa al desarrollo.
+Warehouse Escape es un videojuego desarrollado en Unity en el que el jugador controla a un personaje (Thief) que debe escapar de un almacén vigilado. Para lograrlo, el jugador debe explorar el entorno, evitar a los GuardRobots, recoger un objeto objetivo y alcanzar la zona de salida antes de ser capturado.
 
-## Objetivos del videojuego
-- Permitir el movimiento del jugador por el almacén.
-- Implementar GuardRobots con IA de patrulla y persecución.
-- Recoger un objeto objetivo necesario para escapar.
-- Generar alarmas y elementos del nivel dinámicamente según la dificultad.
-- Gestionar un loop de juego cerrado (inicio, juego, victoria/derrota, reinicio).
+El proyecto implementa un bucle de juego completo que incluye menú principal, selección de dificultad, jugabilidad, condiciones de victoria y derrota, y reinicio de la partida. La arquitectura está diseñada siguiendo principios de modularidad y mantenibilidad, aplicando patrones de diseño vistos en la asignatura.
 
-## Componentes principales
-- Thief (jugador)
-- GuardRobot (enemigos con IA basada en estados)
-- Alarmas (activadas por detección del jugador)
-- ObjectiveItem (objeto clave para completar el nivel)
-- ExitZone (punto de salida)
-- GameManager (gestión global del juego)
-- Sistema de niveles: EasyMap, MediumMap y DifficultMap
-- UI: ScoreUI, EndScreen y menú principal
+---
 
-## Diseño UML
-La arquitectura se organiza en módulos independientes:
-- Lógica del juego a cargo del GameManager.
-- Personajes y enemigos (Thief y GuardRobot).
-- Máquina de estados (PatrolState, ChaseState, IA).
-- Sistema de generación de alarmas mediante AlarmFactory.
-- Sistema de dificultad implementado con el patrón Bridge (IMapLevel).
-- Interfaz de usuario encargada de la puntuación y pantallas finales.
+## Objetivo del juego
+El objetivo del jugador es recoger el objeto objetivo y escapar por la salida sin ser atrapado por los guardias. Al activar una alarma, los guardias pasan de patrullar a perseguir activamente al jugador, incrementando la dificultad del nivel.
+
+---
+
+## Funcionalidades implementadas
+El proyecto incluye las siguientes funcionalidades principales:
+
+- Movimiento completo del jugador (Thief).
+- Sistema de enemigos (GuardRobot) con inteligencia artificial basada en estados.
+- Estados de patrulla y persecución implementados mediante una máquina de estados.
+- Sistema de alarmas que, al ser activadas, alertan a los guardias y cambian su comportamiento.
+- Generación dinámica de alarmas según la dificultad seleccionada.
+- Objeto objetivo que debe recogerse antes de poder escapar.
+- Zona de salida que valida la condición de victoria.
+- Sistema de puntuación.
+- Menú principal con selección de dificultad.
+- Paneles de UI para victoria, derrota y alertas durante la partida.
+- Reinicio completo del nivel tras finalizar la partida.
+
+---
+
+## Inteligencia Artificial de los Guardias
+Los GuardRobots utilizan una máquina de estados para gestionar su comportamiento:
+
+- **PatrolState**: el guardia recorre una serie de puntos de patrulla (waypoints).
+- **ChaseState**: el guardia persigue activamente al jugador tras activarse una alarma.
+
+Durante la persecución, los guardias incorporan un sistema de evasión de obstáculos y detección de atascos, evitando quedarse bloqueados contra paredes mediante comprobaciones de colisión y lógica de escape.
+
+---
+
+## Sistema de dificultad
+La dificultad del juego se gestiona mediante ScriptableObjects (`DifficultySettings`), lo que permite configurar parámetros como:
+
+- Número de alarmas en el nivel.
+- Velocidad de los guardias.
+- Comportamiento general del nivel.
+
+Este enfoque permite modificar la dificultad directamente desde el editor de Unity sin necesidad de cambiar el código, separando claramente los datos de configuración de la lógica del juego.
+
+---
+
+## Interfaz de usuario (UI)
+El sistema de UI incluye:
+
+- Menú principal con selección de dificultad.
+- Visualización de la puntuación durante la partida.
+- Panel de alerta que se muestra al activar una alarma.
+- Pantalla de victoria al escapar correctamente.
+- Pantalla de derrota cuando el jugador es capturado.
+
+Los paneles se gestionan de forma desacoplada mediante eventos lanzados por el GameManager.
+
+---
 
 ## Patrones de diseño utilizados
-### 1. Factoría
-Utilizada para generar alarmas dinámicamente según la dificultad seleccionada.
+Durante el desarrollo se han aplicado varios patrones de diseño:
 
-### 2. State Pattern
-Define el comportamiento del GuardRobot mediante estados de patrulla y persecución.
+- **State Pattern**: utilizado para la IA de los GuardRobots (patrulla y persecución).
+- **Factory Pattern**: empleado para la creación dinámica de alarmas en el nivel.
+- **Singleton / GameManager**: gestión centralizada del estado global del juego.
+- **ScriptableObject**: configuración de la dificultad del juego separada de la lógica.
 
-### 3. Bridge Pattern
-Permite separar la abstracción del mapa (IMapLevel) de sus implementaciones (EasyMap, MediumMap, DifficultMap).
+---
 
-## Historias de usuario
-Las historias de usuario definen las necesidades principales del jugador y del diseñador del nivel.  
-Incluyen movimientos básicos, detección y persecución por parte del robot, recogida del objeto clave, validación de condiciones de victoria y generación dinámica de elementos según la dificultad.
+## Arquitectura y UML
+La arquitectura del proyecto se basa en componentes desacoplados que se comunican mediante eventos.  
+El diagrama UML final refleja las relaciones entre los distintos sistemas del juego, incluyendo asociaciones, dependencias y composiciones justificadas en la documentación.
 
-## Análisis de historias de usuario
-Cada historia se analiza considerando:
-- Objetivo que busca el usuario.
-- Tareas necesarias para su implementación en Unity.
-- Requisitos funcionales y no funcionales relacionados.
-- Interacciones con otros componentes.
-- Validación necesaria durante las pruebas.
-- Estimación de esfuerzo y priorización según su impacto en el desarrollo.
+El UML y la memoria completa del proyecto se encuentran en la carpeta `/doc`.
 
-Este análisis permite derivar la arquitectura final reflejada en el diagrama UML y establece el orden lógico de implementación para la segunda parte del proyecto.
-
-## Requisitos del sistema
-### Requisitos funcionales
-Incluyen el movimiento del jugador, comportamiento de la IA, activación de alarmas, gestión de puntuación, recogida del objeto objetivo y condiciones de victoria y derrota.
-
-### Requisitos no funcionales
-Relacionados con rendimiento, mantenibilidad, modularidad, usabilidad y robustez del loop de juego.
-
-### Restricciones
-- Proyecto limitado a un jugador.
-- Uso obligatorio de Unity como motor.
-- Dependencia de los assets disponibles.
-- Tres niveles de dificultad definidos para esta entrega.
+---
 
 ## Tecnologías utilizadas
-- Unity (versión indicada en la documentación)
+- Unity 6.x
 - C#
+- TextMeshPro
 - Visual Studio / VS Code
 - Git y GitHub para control de versiones
 
+---
+
 ## Contenido del repositorio
-- /Docs/ – Documentación del diseño de arquitectura (PDF)
-- /UML/ – Diagrama UML del proyecto
-- README.md – Documento actual  
-- (Segunda parte) Código en C#, escenas, prefabs y assets del videojuego
+- `Assets/` – Código fuente, escenas, prefabs y scripts del proyecto.
+- `Packages/` – Dependencias de Unity.
+- `ProjectSettings/` – Configuración del proyecto.
+- `doc/` – Documentación del proyecto y diagramas UML.
+- `Build/` – Versión compilada del juego para PC/Mac.
+- `README.md` – Documento descriptivo del proyecto.
+
+---
 
 ## Estado del proyecto
-Primera parte completada: Diseño de arquitectura  
-Segunda parte pendiente: Desarrollo e implementación en Unity
+Proyecto finalizado.  
+Incluye diseño, implementación completa en Unity y versión jugable compilada.
 
-## Autores
-Lucía Tamarit Barberán  
-Javier Mendoza Guerrero
