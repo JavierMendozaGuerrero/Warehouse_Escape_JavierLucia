@@ -53,15 +53,6 @@ El sistema de UI incluye:
 - Pantalla de victoria y de derrota
 
 ---
-
-## Patrones de diseño utilizados
-Durante el desarrollo se han aplicado varios patrones de diseño:
-
-- **State Pattern**: utilizado para los GuardRobots (patrulla y persecución).
-- **Factory Pattern**: empleado para la creación dinámica de alarmas en el nivel.
-- **Singleton / ScoreManager**: gestión de la puntuación global del juego
----
-
 ## Arquitectura y UML
 La arquitectura del proyecto se basa en componentes desacoplados que se comunican mediante eventos.  
 El diagrama UML final refleja las relaciones entre los distintos sistemas del juego, incluyendo asociaciones, dependencias y composiciones justificadas en la documentación.
